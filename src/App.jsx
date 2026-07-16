@@ -14,11 +14,59 @@ function App() {
   };
 
   const agregarCarrito = (producto) => {
-    setCarrito([...carrito, producto]);
+    const existe = carrito.find((item) => item.id === producto.id);
+
+    if (existe) {
+      setCarrito(
+        carrito.map((item) =>
+          item.id === producto.id
+            ? {
+                ...item,
+                cantidad: item.cantidad + 1,
+              }
+            : item,
+        ),
+      );
+    } else {
+      setCarrito([
+        ...carrito,
+        {
+          ...producto,
+          cantidad: 1,
+        },
+      ]);
+    }
   };
 
   const eliminarDelCarrito = (id) => {
     setCarrito(carrito.filter((producto) => producto.id !== id));
+  };
+  const aumentarCantidad = (id) => {
+    setCarrito(
+      carrito.map((producto) =>
+        producto.id === id
+          ? {
+              ...producto,
+              cantidad: producto.cantidad + 1,
+            }
+          : producto,
+      ),
+    );
+  };
+
+  const disminuirCantidad = (id) => {
+    setCarrito(
+      carrito
+        .map((producto) =>
+          producto.id === id
+            ? {
+                ...producto,
+                cantidad: producto.cantidad - 1,
+              }
+            : producto,
+        )
+        .filter((producto) => producto.cantidad > 0),
+    );
   };
 
   return (
@@ -43,8 +91,12 @@ function App() {
           ))
         )}
       </div>
-
-      <Carrito carrito={carrito} eliminarDelCarrito={eliminarDelCarrito} />
+      <Carrito
+        carrito={carrito}
+        eliminarDelCarrito={eliminarDelCarrito}
+        aumentarCantidad={aumentarCantidad}
+        disminuirCantidad={disminuirCantidad}
+      />
     </div>
   );
 }
