@@ -9,13 +9,23 @@ function Carrito({
     0,
   );
   const cantidadTotal = carrito.reduce(
-  (suma, producto) => suma + producto.cantidad,
-  0
-);
+    (suma, producto) => suma + producto.cantidad,
+    0,
+  );
 
   return (
     <div className="card shadow p-4">
-      <h2 className="mb-3">Carrito ({cantidadTotal})</h2>
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h2 className="mb-0">Carrito de Compras</h2>
+
+        <div>
+          <span className="badge bg-primary me-2">
+            {cantidadTotal} unidades
+          </span>
+
+          <span className="badge bg-success">${total.toLocaleString()}</span>
+        </div>
+      </div>
 
       {carrito.length === 0 ? (
         <p>No hay productos en el carrito</p>
@@ -61,7 +71,7 @@ function Carrito({
             </div>
           ))}
 
-          <div className="mt-3">Total: ${total.toFixed(2)}</div>
+          <div className="mt-3">Total: ${total.toFixed(0)}</div>
         </>
       )}
     </div>
