@@ -3,11 +3,12 @@ import { useState } from "react";
 function ProductoForm({ agregarProducto }) {
   const [nombre, setNombre] = useState("");
   const [precio, setPrecio] = useState("");
+  const [imagen, setImagen] = useState("");
 
   const guardarProducto = (e) => {
     e.preventDefault();
 
-    if (!nombre || !precio) {
+    if (!nombre || !precio || !imagen) {
       alert("Complete todos los campos");
       return;
     }
@@ -16,11 +17,13 @@ function ProductoForm({ agregarProducto }) {
       id: Date.now(),
       nombre,
       precio,
+      imagen,
     };
 
     agregarProducto(nuevoProducto);
     setNombre("");
     setPrecio("");
+    setImagen("");
   };
 
   return (
@@ -45,6 +48,18 @@ function ProductoForm({ agregarProducto }) {
             className="form-control"
             value={precio}
             onChange={(e) => setPrecio(e.target.value)}
+          />
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">URL de la imagen</label>
+
+          <input
+            type="text"
+            className="form-control"
+            placeholder="https://..."
+            value={imagen}
+            onChange={(e) => setImagen(e.target.value)}
           />
         </div>
 
