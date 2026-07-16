@@ -1,16 +1,84 @@
-# React + Vite
+# Product Manager App
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Aplicación web desarrollada con React para la gestión de productos y simulación de carrito de compras.
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Registro de productos mediante formulario.
+- Visualización dinámica de productos.
+- Tarjetas individuales para cada producto.
+- Agregado de productos a un carrito de compras.
+- Cálculo automático del total del carrito.
+- Interfaz responsiva utilizando Bootstrap.
+- Arquitectura basada en componentes React.
+- Gestión de estado mediante Hooks.
 
-## React Compiler
+## Tecnologías Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- JavaScript (ES6+)
+- Bootstrap 5
+- HTML5
+- CSS3
 
-## Expanding the Oxlint configuration
+## Estructura del Proyecto
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```text
+src/
+│
+├── App.jsx
+├── ProductoForm.jsx
+├── ProductoCard.jsx
+├── Carrito.jsx
+```
+
+## Funcionalidades Implementadas
+
+### Gestión de Productos
+
+Permite registrar nuevos productos mediante un formulario simple que solicita:
+
+- Nombre del producto
+- Precio
+
+Los productos se agregan dinámicamente a la lista sin necesidad de recargar la página.
+
+### Catálogo de Productos
+
+Los productos registrados son mostrados mediante tarjetas dinámicas generadas utilizando componentes reutilizables.
+
+### Carrito de Compras
+
+Cada producto puede ser agregado al carrito mediante un botón.
+
+El carrito permite:
+
+- Visualizar productos seleccionados.
+- Contabilizar la cantidad de productos.
+- Calcular el total de la compra.
+
+## Conceptos React Aplicados
+
+- Componentes Funcionales
+- Props
+- useState
+- Eventos
+- Renderizado Condicional
+- Renderizado de Listas con map()
+- Comunicación Padre-Hijo
+- Comunicación Hijo-Padre
+
+## Próximas Mejoras
+
+- Persistencia de datos con Firebase Firestore.
+- Autenticación de usuarios.
+- Almacenamiento de imágenes con Firebase Storage.
+- Búsqueda y filtrado de productos.
+- Edición y eliminación de productos.
+- Despliegue en Netlify.
+- Versión Android mediante Cordova.
+
+## Autor
+
+Alex Carreño
+Desarrollador 
