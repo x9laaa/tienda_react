@@ -17,31 +17,24 @@ function App() {
     setCarrito([...carrito, producto]);
   };
 
+  const eliminarDelCarrito = (id) => {
+    setCarrito(carrito.filter((producto) => producto.id !== id));
+  };
+
   return (
     <div className="container mt-4">
+      <h1 className="text-center mb-4">Tienda React</h1>
 
-      <h1 className="text-center mb-4">
-        Tienda React
-      </h1>
+      <ProductoForm agregarProducto={agregarProducto} />
 
-      <ProductoForm
-        agregarProducto={agregarProducto}
-      />
-
-      <h2 className="mb-3">
-        Productos
-      </h2>
+      <h2 className="mb-3">Productos</h2>
 
       <div className="row">
-
         {productos.length === 0 ? (
           <p>No hay productos registrados</p>
         ) : (
           productos.map((producto) => (
-            <div
-              key={producto.id}
-              className="col-md-4 mb-3"
-            >
+            <div key={producto.id} className="col-md-4 mb-3">
               <ProductoCard
                 producto={producto}
                 agregarCarrito={agregarCarrito}
@@ -49,11 +42,9 @@ function App() {
             </div>
           ))
         )}
-
       </div>
 
-      <Carrito carrito={carrito} />
-
+      <Carrito carrito={carrito} eliminarDelCarrito={eliminarDelCarrito} />
     </div>
   );
 }
