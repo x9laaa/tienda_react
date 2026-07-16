@@ -1,16 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { db } from "./firebase";
+import { collection, getDocs } from "firebase/firestore";
 
-import ProductoForm from "./ProductoForm";
-import ProductoCard from "./ProductoCard";
-import Carrito from "./Carrito";
+import Navbar from "./Navbar";
+import Productos from "./Productos";
+import AgregarProducto from "./AgregarProducto";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 function App() {
   const [productos, setProductos] = useState([]);
-
   const [carrito, setCarrito] = useState([]);
 
-  const agregarProducto = (producto) => {
-    setProductos([...productos, producto]);
+  useEffect(() => {
+    obtenerProductos();
+  }, []);
+
+  const obtenerProductos = async () => {
+    try {
+      const querySnapshot = await getDocs(collection(db, "productos"));
+
+      const listaProductos = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      setProductos(listaProductos);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const agregarCarrito = (producto) => {
@@ -41,6 +60,7 @@ function App() {
   const eliminarDelCarrito = (id) => {
     setCarrito(carrito.filter((producto) => producto.id !== id));
   };
+
   const aumentarCantidad = (id) => {
     setCarrito(
       carrito.map((producto) =>
@@ -70,34 +90,39 @@ function App() {
   };
 
   return (
-    <div className="container mt-4">
-      <h1 className="text-center mb-4">Tienda React</h1>
-
-      <ProductoForm agregarProducto={agregarProducto} />
-
-      <h2 className="mb-3">Productos</h2>
-
-      <div className="row">
-        {productos.length === 0 ? (
-          <p>No hay productos registrados</p>
-        ) : (
-          productos.map((producto) => (
-            <div key={producto.id} className="col-md-4 mb-3">
-              <ProductoCard
-                producto={producto}
-                agregarCarrito={agregarCarrito}
-              />
-            </div>
-          ))
-        )}
-      </div>
-      <Carrito
+    <BrowserRouter>
+      <Navbar
         carrito={carrito}
         eliminarDelCarrito={eliminarDelCarrito}
         aumentarCantidad={aumentarCantidad}
         disminuirCantidad={disminuirCantidad}
       />
-    </div>
+
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-8">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Productos
+                    productos={productos}
+                    agregarCarrito={agregarCarrito}
+                  />
+                }
+              />
+
+              <Route
+                path="/agregar"
+                element={
+                  <AgregarProducto obtenerProductos={obtenerProductos} />
+                }
+              />
+            </Routes>
+          </div>
+        </div>
+      </div>
+    </BrowserRouter>
   );
 }
 
