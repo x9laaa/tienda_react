@@ -5,13 +5,26 @@ import { collection, getDocs } from "firebase/firestore";
 import Navbar from "./Navbar";
 import Productos from "./Productos";
 import AgregarProducto from "./AgregarProducto";
+import Login from "./Login";
+import Registro from "./Registro";
+import { auth } from "./firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import ProtectedRoute from "./ProtectedRoute";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 
 function App() {
   const [productos, setProductos] = useState([]);
   const [carrito, setCarrito] = useState([]);
+  const [usuario, setUsuario] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUsuario(user);
+    });
+
+    return unsubscribe;
+  }, []);
 
   useEffect(() => {
     obtenerProductos();
@@ -92,6 +105,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navbar
+        usuario={usuario}
         carrito={carrito}
         eliminarDelCarrito={eliminarDelCarrito}
         aumentarCantidad={aumentarCantidad}
@@ -115,9 +129,14 @@ function App() {
               <Route
                 path="/agregar"
                 element={
-                  <AgregarProducto obtenerProductos={obtenerProductos} />
+                  <ProtectedRoute usuario={usuario}>
+                    <AgregarProducto obtenerProductos={obtenerProductos} />
+                  </ProtectedRoute>
                 }
               />
+              <Route path="/login" element={<Login />} />
+
+              <Route path="/registro" element={<Registro />} />
             </Routes>
           </div>
         </div>
