@@ -1,84 +1,116 @@
-# Product Manager App
+# 🛒 Tienda React
 
-Aplicación web desarrollada con React para la gestión de productos y simulación de carrito de compras.
+Aplicación web desarrollada con **React** que permite gestionar un catálogo de productos, autenticación de usuarios y un carrito de compras. La aplicación utiliza **Firebase** como backend para la autenticación y almacenamiento de datos, además de **Bootstrap** para el diseño de la interfaz.
 
-## Características
+- Inicio
+- Listado de productos
+- Carrito de compras
+- Inicio de sesión
+- Formulario de productos
 
-- Registro de productos mediante formulario.
-- Visualización dinámica de productos.
-- Tarjetas individuales para cada producto.
-- Agregado de productos a un carrito de compras.
-- Cálculo automático del total del carrito.
-- Interfaz responsiva utilizando Bootstrap.
-- Arquitectura basada en componentes React.
-- Gestión de estado mediante Hooks.
+---
 
-## Tecnologías Utilizadas
+## 🚀 Características
+
+- Inicio de sesión y registro de usuarios mediante Firebase Authentication.
+- Gestión de productos utilizando Firestore Database.
+- Carrito de compras con control de cantidades.
+- Protección de rutas para usuarios autenticados.
+- Navegación con React Router.
+- Validación de formularios con react-simple-validator.
+- Diseño responsive utilizando Bootstrap.
+- Preparado para compilación en Android mediante Apache Cordova.
+
+---
+
+## 🛠 Tecnologías utilizadas
 
 - React
-- JavaScript (ES6+)
+- React Router DOM
+- Firebase Authentication
+- Firebase Firestore
 - Bootstrap 5
-- HTML5
-- CSS3
+- Bootstrap Icons
+- React Simple Validator
+- Apache Cordova
+- Android Studio
+- Gradle
 
-## Estructura del Proyecto
+---
 
-```text
-src/
-│
-├── App.jsx
-├── ProductoForm.jsx
-├── ProductoCard.jsx
-├── Carrito.jsx
+## ⚙️ Instalación
+
+Clonar el repositorio:
+
+```bash
+git clone https://github.com/x9laaa/tienda_react.git
 ```
 
-## Funcionalidades Implementadas
+Entrar al proyecto:
 
-### Gestión de Productos
+```bash
+cd product-manager-app
+```
 
-Permite registrar nuevos productos mediante un formulario simple que solicita:
+Instalar dependencias:
 
-- Nombre del producto
-- Precio
+```bash
+npm install
+```
 
-Los productos se agregan dinámicamente a la lista sin necesidad de recargar la página.
+Ejecutar en modo desarrollo:
 
-### Catálogo de Productos
+```bash
+npm run dev
+```
 
-Los productos registrados son mostrados mediante tarjetas dinámicas generadas utilizando componentes reutilizables.
+---
 
-### Carrito de Compras
+## 📦 Generar versión de producción
 
-Cada producto puede ser agregado al carrito mediante un botón.
+```bash
+npm run build
+```
 
-El carrito permite:
+Vista previa de la versión compilada:
 
-- Visualizar productos seleccionados.
-- Contabilizar la cantidad de productos.
-- Calcular el total de la compra.
+```bash
+npm run preview
+```
+---
 
-## Conceptos React Aplicados
+## 🔐 Autenticación
 
-- Componentes Funcionales
-- Props
-- useState
-- Eventos
-- Renderizado Condicional
-- Renderizado de Listas con map()
-- Comunicación Padre-Hijo
-- Comunicación Hijo-Padre
+La aplicación implementa Firebase Authentication para:
 
-## Próximas Mejoras
+- Registro de usuarios.
+- Inicio de sesión.
+- Cierre de sesión.
+- Protección de rutas privadas.
 
-- Persistencia de datos con Firebase Firestore.
-- Autenticación de usuarios.
-- Almacenamiento de imágenes con Firebase Storage.
-- Búsqueda y filtrado de productos.
-- Edición y eliminación de productos.
-- Despliegue en Netlify.
-- Versión Android mediante Cordova.
+---
 
-## Autor
+## 🛒 Funcionalidades
 
-Alex Carreño
-Desarrollador 
+- Visualización dinámica de productos.
+- Agregar productos al carrito.
+- Modificar cantidades.
+- Eliminar productos del carrito.
+- Cálculo automático del total de compra.
+- Agregar productos a Firestore mediante formulario.
+
+---
+
+## 🌐 Despliegue
+
+La aplicación puede desplegarse fácilmente en servicios como:
+
+- Netlify
+
+---
+
+## 👨‍💻 Autor
+
+**Alex Carreño**
+
+
